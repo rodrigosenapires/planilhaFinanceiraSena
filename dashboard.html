@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <title>Dashboard</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: black;
+            color: white;
+            display: flex;
+            flex-direction: column;
+            height: 100vh;
+        }
+        .container {
+            display: flex;
+            flex: 1;
+        }
+        .sidebar {
+            width: 15%;
+            border-right: 1px solid white;            
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            padding: 0 20px; 
+        }
+        .section-title {
+            font-weight: bold;
+            font-size: 28px;
+            color: purple;            
+            margin: 10px 0 0px 0;
+            border-top: 1px solid white;
+            padding-bottom: 10px;
+            width: 100%;
+            text-align: center;
+            line-height: 50px;
+        }      
+
+        .sidebar p, .sidebar select, .sidebar button {            
+            margin-bottom: 14px;  
+            padding: 5px 0 5px 0;
+            width: 100%;
+            box-sizing: border-box;  
+        }
+
+        .sidebar button:last-of-type {
+            border-bottom: none;  
+        }
+
+        select, button {
+            margin: 10px 0;
+            height: 2rem;
+            width: 240px;
+            background-color: #674ea7ff;
+            color: white;
+            border: 1px solid white;
+            border-radius: 8px;
+            text-align: center;                          
+        }
+        
+
+        .profile-container {
+            width: 160px;
+            height: 160px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: white;
+            border: 5px solid #674ea7ff;
+            border-radius: 50%; /* torna o container circular */
+            margin: 0 auto 20px auto; /* centraliza o container */
+        }
+
+        img.logo {
+            width: 240px;
+            height: 240px;
+            margin: 0 auto 20px auto;
+            border-radius: 50%; /* torna a imagem circular */
+        }
+
+        .main-content {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        .main-content h1 {
+            font-size: 42px;
+            font-weight: bold;
+            color: purple;
+            align-self: center;
+            margin-top: 20px;
+        }
+        .footer {
+            text-align: center;
+            background-color: #333;
+            padding: 10px 0;
+            color: white;
+        }
+        .footer a {
+            color: white;
+            text-decoration: none;
+        }
+
+        .footer i {
+            margin-left: 10px;
+        }
+
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="sidebar">
+            <div class="profile-container">
+                <img class="logo" src="https://drive.google.com/uc?export=view&id=1CsIEIP4voJh5B-6EUm54Httnl4m0P6qG" alt="Logo">
+            </div>
+
+            <!-- Seção Filtros -->
+            <div class="section-title">Filtros</div>
+            <p>Escolha o mês de referência</p>
+            <select onchange="buscarMesReferencia()">
+                <option value="Janeiro">Janeiro</option>
+                <option value="Fevereiro">Fevereiro</option>
+                <option value="Março">Março</option>
+                <option value="Abril">Abril</option>
+                <option value="Maio">Maio</option>
+                <option value="Junho">Junho</option>
+                <option value="Julho">Julho</option>
+                <option value="Agosto">Agosto</option>
+                <option value="Setembro">Setembro</option>
+                <option value="Outubro">Outubro</option>
+                <option value="Novembro">Novembro</option>
+                <option value="Dezembro">Dezembro</option>
+            </select>
+            <p>Escolha o cliente:</p>
+            <select onchange="buscarNomeClientes()">
+                <!-- Lista suspensa 2 -->
+            </select>
+            <p>Escolha o tipo de dado:</p>
+            <select onchange="buscarTipoDado(this.value)">
+                <option value="Pagamento">Pagamento</option>
+                <option value="Vendedor">Vendedor</option>
+                <option value="Custos">Custos</option>
+                <option value="Lucro">Lucro</option>
+            </select>
+            <p>Escolha o tipo de serviço</p>
+            <select>
+                <option value="Manutenção de site">Manutenção de site</option>
+                <option value="Anúncios Meta">Anúncios Meta</option>
+                <option value="Anúncios Google">Anúncios Google</option>
+                <option value="Landing Page">Landing Page</option>
+                <option value="Site institucional">Site institucional</option>
+                <option value="E-commerce">E-commerce</option>
+                <option value="Blog">Blog</option>
+            </select>
+
+            <!-- Seção Financeiro -->
+            <div class="section-title">Financeiro</div>
+            <button onclick="buscarDadosFinanceiros()">Dados Gerais</button>
+            <button onclick="buscarDadosPorCliente()">Dados por cliente</button>
+            <button onclick="buscarTipoServico()">Dados por serviço</button>
+        </div>
+        <div class="main-content">
+            <h1>Visualização dos dados</h1>
+            <!-- Espaço para visualização das informações -->
+        </div>
+    </div>
+
+    <div class="footer">
+        Desenvolvedor: Rodrigo Sena Pires 
+        <a href="https://wa.me/5521994876693" target="_blank"><i class="fab fa-whatsapp"></i></a>
+    </div>
+
+    <script>
+        // Funções serão implementadas posteriormente
+    </script>
+</body>
+</html>
