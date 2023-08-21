@@ -123,7 +123,7 @@
 
     </style>
 </head>
-<body>
+<body onload="buscarENomearClientes()">
     <div class="container">
         <div class="sidebar">
             <div class="profile-container">
@@ -133,7 +133,7 @@
             <!-- Seção Filtros -->
             <div class="section-title">Filtros</div>
             <p>Escolha o mês de referência</p>
-            <select onchange="buscarMesReferencia()">
+            <select>
                 <option value="Janeiro">Janeiro</option>
                 <option value="Fevereiro">Fevereiro</option>
                 <option value="Março">Março</option>
@@ -147,10 +147,11 @@
                 <option value="Novembro">Novembro</option>
                 <option value="Dezembro">Dezembro</option>
             </select>
-            <p>Escolha o cliente:</p>
-            <select onchange="buscarNomeClientes()">
-                <!-- Lista suspensa 2 -->
+
+           <p>Escolha o cliente:</p>
+            <select id="listaClientes" onchange="exibirDadosCliente()">           
             </select>
+               
             <p>Escolha o tipo de dado:</p>
             <select onchange="buscarTipoDado(this.value)">
                 <option value="Pagamento">Pagamento</option>
@@ -158,6 +159,7 @@
                 <option value="Custos">Custos</option>
                 <option value="Lucro">Lucro</option>
             </select>
+            
             <p>Escolha o tipo de serviço</p>
             <select>
                 <option value="Manutenção de site">Manutenção de site</option>
@@ -176,9 +178,11 @@
             <button onclick="buscarTipoServico()">Dados por serviço</button>
         </div>
         <div class="main-content">
-            <h1>Visualização dos dados</h1>
-            <!-- Espaço para visualização das informações -->
-        </div>
+    <h1>Visualização dos dados</h1>
+    <!-- Espaço para visualização das informações -->
+    <div id="dadosCliente"></div>
+</div>
+
     </div>
 
     <div class="footer">
@@ -187,7 +191,41 @@
     </div>
 
     <script>
-        // Funções serão implementadas posteriormente
-    </script>
+    // Função chamada para buscar e popular os nomes dos clientes
+    function buscarENomearClientes() {
+        console.log("Chamando função para buscar clientes...");
+        google.script.run.withSuccessHandler(popularListaClientes).buscarNomeClientes();
+    }
+
+    function popularListaClientes(nomesClientes) {
+        var listaSuspensa = document.getElementById('listaClientes');
+        listaSuspensa.innerHTML = ""; // Limpar opções anteriores
+
+        nomesClientes.forEach(function(nome) {
+            var option = document.createElement("option");
+            option.value = nome;
+            option.textContent = nome;
+            listaSuspensa.appendChild(option);
+        });
+    }
+
+    // Esta função pode ser usada para reagir à seleção de um cliente
+    function clienteSelecionado() {
+        var cliente = document.getElementById('listaClientes').value;
+        console.log(cliente); // Apenas para teste. Você pode substituir por qualquer ação desejada.
+    }
+
+    function exibirDadosCliente() {
+    var cliente = document.getElementById('listaClientes').value;
+    google.script.run.withSuccessHandler(mostrarDados).buscarDadosCliente(cliente);
+}
+
+function mostrarDados(dados) {
+    var divDados = document.getElementById('dadosCliente');
+    divDados.innerHTML = dados; // Você pode formatar os dados conforme necessário.
+}
+
+</script>
+
 </body>
 </html>
